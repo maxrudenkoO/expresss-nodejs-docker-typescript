@@ -39,7 +39,7 @@ itemsRouter.post(
         hashedPassword
       );
       if (existedUser) {
-        throw new HttpException(["User already exist!"]);
+        throw new Error("User already exist!");
       }
       const userEntity = await UserService.add({
         email: reqModel.email,

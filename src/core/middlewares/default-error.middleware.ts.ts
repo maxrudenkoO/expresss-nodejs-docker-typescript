@@ -1,6 +1,7 @@
 import { Response, NextFunction, Request } from "express";
 import { ErrorRequestHandler } from "express-serve-static-core";
 import { HttpException } from "core/common/http-exception";
+import { logError } from "core/common/logger";
 export const DefaultErrorMiddleware: ErrorRequestHandler = async (
   err: any,
   _req: Request,
@@ -15,7 +16,6 @@ export const DefaultErrorMiddleware: ErrorRequestHandler = async (
     res.status(400).send((error as HttpException).messages);
     return;
   }
-  console.log("INTERNAL_SERVER_ERROR_500: ", error);
-  //TODO: log this error
+  logError(`${error.name} ${error.message} ${error.stack}`);
   res.sendStatus(500).send("Internal Server Error!");
 };
