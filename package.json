@@ -10,7 +10,7 @@
     "build:docker": "docker build -t nodeapp:latest .",
     "start:docker": "docker run --rm -it -p 443:443/tcp -p 80:80/tcp nodeapp:latest",
     "build:prod": "webpack --config webpack.prod.config.ts",
-    "start:prod": "NODE_ENV=production pm2 start dist/server.js -- --production --max-old-space-size=2048 && pm2 logs --lines 1000"
+    "start:prod": "NODE_ENV=production pm2-runtime dist/server.js -- --production --max-old-space-size=2048 && pm2 logs --lines 1000"
   },
   "keywords": [
     "Anuitex",
